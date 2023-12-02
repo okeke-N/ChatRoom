@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const path =require('path');
+
 
 
 const app = express();
@@ -43,17 +45,17 @@ app.use(flash())
 
 //Global vars
 app.use((req, res, next)=>{
-                    res.locals.succcess_msg = req.flash('success_msg')
-                    res.locals.errors_msg = req.flash('error_msg')
-                    res.locals.errors = req.flash('error')
+                    res.locals.success_msg = req.flash('success_msg')
+                    res.locals.error_msg = req.flash('error_msg')
+                    res.locals.error = req.flash('error')
                     next();
 
 });
-
 //Routes
 app.use('/', require('./routes/index'))
 app.use('/users', require('./routes/users'))
 
 
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, console.log(`Server port running on port ${PORT}`));
+  app.listen(PORT, console.log(`Server port running on port ${PORT}`));
